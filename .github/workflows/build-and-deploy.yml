@@ -55,5 +55,6 @@ jobs:
           # Pre-requisite: docker has been installed on remote machine
           ssh remote_host 'docker ps -a'                 # remote_host as defined in ~/.ssh/config
           ssh remote_host 'docker kill $(docker ps -q)'  # stops all running containers
-          ssh remote_host 'docker pull $IMAGE_NAME:latest'
+          echo $IMAGE_NAME
+          ssh remote_host 'docker pull $IMAGE_NAME'
           ssh remote_host 'docker run -d -p 80:80 $IMAGE_NAME:latest'
