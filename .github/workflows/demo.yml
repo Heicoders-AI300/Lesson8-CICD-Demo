@@ -25,9 +25,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Print secret to console (Frowned upon, so GitHub encrypts your secrets!)
+      - name: Print secret to console (Frowned upon. GitHub encrypts your secrets!)
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
-          echo "My host is ${SSH_HOST}."
-          echo "My host is ${SSH_HOST}." | sed 's/[.]/-/g'
+          echo "SSH_HOST=${SSH_HOST}"
+          echo "SSH_HOST=${SSH_HOST}" | sed 's/[.]/-/g'  # replaces dots with dashes
