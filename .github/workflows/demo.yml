@@ -25,7 +25,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Print secret to console (Warning)
+      - name: Print secret to console (Frowned upon, so GitHub encrypts your secrets!)
         env:
-          SSH_HOST: My host is ${{ secrets.SSH_HOST }}
-        run: echo $SSH_HOST
+          SSH_HOST: ${{ secrets.SSH_HOTS }}
+        run: |
+          echo "My host is ${SSH_HOST}."
+          echo "My host is ${SSH_HOST}." | sed 's/./-/g'
