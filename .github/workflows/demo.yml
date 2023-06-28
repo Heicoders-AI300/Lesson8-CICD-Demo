@@ -1,0 +1,31 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:  # Example adapted from https://docs.github.com/en/actions/quickstart
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print workflow-related metadata to console
+        run: |
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+          echo "🔎 The name of your repository is ${{ github.repository }} and will be cloned in the next step."
+
+      - name: Checkout Git repository code
+        uses: actions/checkout@v3
+
+      - name: List files in the repository
+        run: |
+          echo "🖥️ The workflow is now ready to test your code on the runner."
+          ls ${{ github.workspace }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print secret to console (Warning)
+        env:
+          SSH_HOST: My host is ${{ secrets.SSH_HOST }}
+        run: echo $SSH_HOST
